@@ -26,21 +26,9 @@ android {
     }
 }
 
-//repositories {
-//    maven {
-////        hello charts
-//        url "https://jitpack.io"
-//    }
-//}
 repositories {
     maven { url "https://jitpack.io" }
 }
-//
-//allprojects {
-//    repositories {
-//        maven { url "https://jitpack.io" }
-//    }
-//}
 
 buildscript {
     repositories {
@@ -54,6 +42,17 @@ buildscript {
         classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
     }
 
+}
+
+//更多讲解
+// http://www.bubuko.com/infodetail-1662950.html
+greendao {
+    //指定数据库schema版本号
+    schemaVersion 1
+    //通过gradle插件生成的数据库相关文件的包名
+    daoPackage 'testnet.andy.testnetworkstatus.db.greendao'
+    //这就是我们上面说到的自定义生成数据库文件的目录了，可以将生成的文件放到我们的java目录中，而不是build中，这样就不用额外的设置资源目录了
+    targetGenDir 'src/main/java'
 }
 
 dependencies {
@@ -72,4 +71,11 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0' // Java标注
     //greendao
     compile 'org.greenrobot:greendao:3.0.1'
+    compile 'org.greenrobot:greendao-generator:3.0.0'
+
+    compile 'com.jakewharton:butterknife:7.0.1' // 标注
+
+    compile 'io.reactivex:rxandroid:1.1.0' // RxAndroid
+    compile 'io.reactivex:rxjava:1.1.0' // 推荐同时加载RxJava
+    compile 'com.jakewharton.rxbinding:rxbinding:0.3.0'
 }
