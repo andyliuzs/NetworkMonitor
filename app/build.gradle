@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+//dragger2
+apply plugin: 'com.neenbedankt.android-apt'// 注释处理
+apply plugin: 'org.greenrobot.greendao'
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "testnet.andy.testnetworkstatus"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            assets.srcDirs = ['assets']
+        }
+    }
+}
+
+//repositories {
+//    maven {
+////        hello charts
+//        url "https://jitpack.io"
+//    }
+//}
+repositories {
+    maven { url "https://jitpack.io" }
+}
+//
+//allprojects {
+//    repositories {
+//        maven { url "https://jitpack.io" }
+//    }
+//}
+
+buildscript {
+    repositories {
+//        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        //dragger2
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //greendao
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+//    compile fileTree(dir: 'mylibs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    //hello charts
+//    compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+
+    //dragger2
+    compile 'com.google.dagger:dagger:2.0.2'
+    compile 'com.google.dagger:dagger-compiler:2.0.2'
+    provided 'javax.annotation:jsr250-api:1.0' // Java标注
+    //greendao
+    compile 'org.greenrobot:greendao:3.0.1'
+}
